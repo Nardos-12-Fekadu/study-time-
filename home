@@ -1,0 +1,61 @@
+from datetime import datetime
+
+sessions = []
+
+def add_session():
+    subject = input("Enter subject: ")
+    minutes = int(input("Enter study minutes: "))
+
+    session = {
+        "subject": subject,
+        "minutes": minutes,
+        "time": datetime.now().strftime("%Y-%m-%d %H:%M")
+    }
+
+    sessions.append(session)
+
+    print("\n✅ Study session added!")
+    print(f"📚 Subject: {subject}")
+    print(f"⏱️ Time: {minutes} minutes")
+
+
+def show_sessions():
+    if not sessions:
+        print("\nNo study sessions yet.")
+        return
+
+    print("\n📊 Study History")
+
+    total = 0
+
+    for session in sessions:
+        print(
+            f"{session['time']} | "
+            f"{session['subject']} | "
+            f"{session['minutes']} min"
+        )
+        total += session["minutes"]
+
+    print(f"\n🔥 Total study time: {total} minutes")
+
+
+while True:
+    print("\n===== STUDY FOCUS TIMER =====")
+    print("1. Add study session")
+    print("2. Show study history")
+    print("3. Exit")
+
+    choice = input("Choose: ")
+
+    if choice == "1":
+        add_session()
+
+    elif choice == "2":
+        show_sessions()
+
+    elif choice == "3":
+        print("Good luck with your studies! 🚀")
+        break
+
+    else:
+        print("❌ Invalid choice.")
