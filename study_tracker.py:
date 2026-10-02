@@ -1,0 +1,60 @@
+subjects = {}
+
+def add_study_session():
+    subject = input("Enter subject: ").strip()
+
+    try:
+        hours = float(input("Enter study hours: "))
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    if hours <= 0:
+        print("Study hours must be greater than 0.")
+        return
+
+    subjects[subject] = subjects.get(subject, 0) + hours
+    print(f"Added {hours} hour(s) to {subject}.")
+
+
+def show_progress():
+    if not subjects:
+        print("\nNo study sessions recorded yet.")
+        return
+
+    print("\n📚 Study Progress")
+    print("-" * 30)
+
+    total = 0
+
+    for subject, hours in subjects.items():
+        print(f"{subject}: {hours:.1f} hours")
+        total += hours
+
+    print("-" * 30)
+    print(f"Total study time: {total:.1f} hours")
+
+    most_studied = max(subjects, key=subjects.get)
+    print(f"Most studied subject: {most_studied}")
+
+
+while True:
+    print("\n===== STUDY TRACKER =====")
+    print("1. Add study session")
+    print("2. Show progress")
+    print("3. Exit")
+
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        add_study_session()
+
+    elif choice == "2":
+        show_progress()
+
+    elif choice == "3":
+        print("Good luck with your studies! 👋")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
