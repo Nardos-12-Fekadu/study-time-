@@ -1,0 +1,52 @@
+goals = {}
+
+
+def add_goal():
+    subject = input("Enter subject: ").strip()
+
+    try:
+        target = float(input("Enter weekly study goal (hours): "))
+    except ValueError:
+        print("Please enter a valid number.")
+        return
+
+    if target <= 0:
+        print("Goal must be greater than 0.")
+        return
+
+    goals[subject] = target
+    print(f"Goal set: {subject} → {target} hours/week")
+
+
+def show_goals():
+    if not goals:
+        print("\nNo study goals set yet.")
+        return
+
+    print("\n🎯 Weekly Study Goals")
+    print("-" * 30)
+
+    for subject, target in goals.items():
+        print(f"{subject}: {target:.1f} hours/week")
+
+
+while True:
+    print("\n===== STUDY GOALS =====")
+    print("1. Add study goal")
+    print("2. Show goals")
+    print("3. Exit")
+
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        add_goal()
+
+    elif choice == "2":
+        show_goals()
+
+    elif choice == "3":
+        print("Keep studying! 🚀")
+        break
+
+    else:
+        print("Invalid option.")
