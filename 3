@@ -1,0 +1,35 @@
+def check_achievements(total_hours):
+    achievements = []
+
+    if total_hours >= 1:
+        achievements.append("🌱 First Step - Studied for 1+ hour")
+
+    if total_hours >= 5:
+        achievements.append("🔥 Getting Started - Studied for 5+ hours")
+
+    if total_hours >= 10:
+        achievements.append("💪 Consistent Learner - Studied for 10+ hours")
+
+    if total_hours >= 25:
+        achievements.append("🏆 Study Champion - Studied for 25+ hours")
+
+    if total_hours >= 50:
+        achievements.append("🚀 Study Master - Studied for 50+ hours")
+
+    if not achievements:
+        achievements.append("No achievements yet. Keep studying!")
+
+    print("\n🏅 YOUR ACHIEVEMENTS")
+    print("-" * 35)
+
+    for achievement in achievements:
+        print(achievement)
+
+
+# Example
+if __name__ == "__main__":
+    try:
+        hours = float(input("Enter your total study hours: "))
+        check_achievements(hours)
+    except ValueError:
+        print("Please enter a valid number.")
